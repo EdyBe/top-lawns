@@ -53,6 +53,20 @@ const employeePhone = process.env.EMPLOYEE_PHONE_NUMBER;
 
 const client = twilio(accountSid, authToken);
 
+// Root endpoint - shows API is running
+app.get('/', (req, res) => {
+    res.json({
+        status: 'online',
+        message: 'Top Lawns Lincoln API',
+        endpoints: {
+            bookings: '/api/bookings',
+            sendSMS: '/api/send-booking-sms',
+            webhook: '/api/sms-webhook',
+            availability: '/api/availability/:date'
+        }
+    });
+});
+
 // Endpoint to send booking SMS to employee
 app.post('/api/send-booking-sms', upload.array('photos', 5), async (req, res) => {
     try {
