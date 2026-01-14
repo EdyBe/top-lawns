@@ -1,0 +1,27 @@
+# Environment variables
+.env
+
+# Node modules
+node_modules/
+
+# Uploaded photos
+uploads/
+
+# Firebase service account key
+firebase-service-account.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.vscode/
+.idea/
+
+# Build files
+dist/
+build/

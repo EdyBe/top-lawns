@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Lawns Lincoln - Professional Lawn Care Service</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(34, 139, 34, 0.9), rgba(50, 205, 50, 0.85)),
+                        url('https://images.unsplash.com/photo-1558904541-efa843a96f01?w=1600&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 45px;
+            background: white;
+            color: #228B22;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+            background: #f8f8f8;
+        }
+
+        .trust-badges {
+            margin-top: 3rem;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        .badge svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 20px;
+            background: #f9f9f9;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #228B22;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #228B22;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Booking Section */
+        .booking-section {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .booking-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .booking-container h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #228B22;
+            margin-bottom: 1rem;
+        }
+
+        .booking-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        .booking-form {
+            background: #f9f9f9;
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            gap: 1rem;
+        }
+
+        .step-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            transition: all 0.3s ease;
+        }
+
+        .step-dot.active {
+            background: #228B22;
+            width: 40px;
+            border-radius: 6px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #228B22;
+        }
+
+        .form-group small {
+            display: block;
+            margin-top: 0.3rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .photo-upload {
+            border: 2px dashed #228B22;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .photo-upload:hover {
+            background: #f0f8f0;
+        }
+
+        .photo-upload input {
+            display: none;
+        }
+
+        .photo-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .photo-preview img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #228B22;
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: #1a6b1a;
+        }
+
+        .btn-secondary {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #d0d0d0;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .estimate-display {
+            background: #228B22;
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .estimate-display h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .estimate-price {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .time-slot {
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .time-slot:hover:not(.unavailable) {
+            border-color: #228B22;
+            background: #f0f8f0;
+        }
+
+        .time-slot.selected {
+            background: #228B22;
+            color: white;
+            border-color: #228B22;
+        }
+
+        .time-slot.unavailable {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .success-message {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .success-message svg {
+            width: 80px;
+            height: 80px;
+            color: #228B22;
+            margin-bottom: 1rem;
+        }
+
+        .success-message h3 {
+            font-size: 2rem;
+            color: #228B22;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d2d2d;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer p {
+            margin-bottom: 1rem;
+        }
+
+        .footer a {
+            color: #50C050;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .booking-form {
+                padding: 2rem 1.5rem;
+            }
+
+            .time-slots {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Professional Lawn Care in Lincoln</h1>
+            <p>Get your perfect lawn cut by trusted local professionals. Book in minutes, enjoy peace of mind.</p>
+            <button class="cta-button" onclick="scrollToBooking()">Book Your Mow Now</button>
+
+            <div class="trust-badges">
+                <div class="badge">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                    <span>5-Star Service</span>
+                </div>
+                <div class="badge">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                    </svg>
+                    <span>Insured & Reliable</span>
+                </div>
+                <div class="badge">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+                    </svg>
+                    <span>Same-Day Response</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-container">
+            <h2>Why Choose Top Lawns?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast & Easy Booking</h3>
+                    <p>Schedule your mow in under 2 minutes. See available times and lock in your spot instantly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Transparent Pricing</h3>
+                    <p>Get your instant estimate before booking. No hidden fees, no surprises.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <h3>Quality Guaranteed</h3>
+                    <p>Professional equipment and attention to detail on every job. Your satisfaction is our priority.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>SMS Updates</h3>
+                    <p>Get instant text confirmations and updates. Stay in the loop every step of the way.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏡</div>
+                    <h3>Local & Trusted</h3>
+                    <p>Lincoln locals serving Lincoln families. We care about your property like it's our own.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⏰</div>
+                    <h3>Flexible Scheduling</h3>
+                    <p>Choose times that work for you. We work around your schedule, not the other way around.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking-section" id="booking">
+        <div class="booking-container">
+            <h2>Book Your Mow</h2>
+            <p class="booking-subtitle">It only takes 2 minutes to get on the schedule</p>
+
+            <form class="booking-form" id="bookingForm">
+                <!-- Step Indicator -->
+                <div class="step-indicator">
+                    <div class="step-dot active"></div>
+                    <div class="step-dot"></div>
+                    <div class="step-dot"></div>
+                    <div class="step-dot"></div>
+                </div>
+
+                <!-- Step 1: Location & Size -->
+                <div class="form-step active" data-step="1">
+                    <h3 style="margin-bottom: 1.5rem;">Your Property Details</h3>
+
+                    <div class="form-group">
+                        <label>Street Address *</label>
+                        <input type="text" id="address" required placeholder="123 Main St, Lincoln, NE">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Approximate Lot Size *</label>
+                        <select id="lotSize" required>
+                            <option value="">Select size...</option>
+                            <option value="small">Small (Under 5,000 sq ft)</option>
+                            <option value="medium">Medium (5,000-10,000 sq ft)</option>
+                            <option value="large">Large (10,000-15,000 sq ft)</option>
+                            <option value="xlarge">Extra Large (15,000+ sq ft)</option>
+                        </select>
+                        <small>Don't know? Just estimate - we'll confirm on-site</small>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-primary" onclick="nextStep()">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Contact Info -->
+                <div class="form-step" data-step="2">
+                    <h3 style="margin-bottom: 1.5rem;">Your Contact Information</h3>
+
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" id="customerName" required placeholder="John Smith">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" id="phone" required placeholder="(402) 555-0123">
+                        <small>We'll send booking confirmations via text</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email (Optional)</label>
+                        <input type="email" id="email" placeholder="john@example.com">
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep()">Back</button>
+                        <button type="button" class="btn btn-primary" onclick="nextStep()">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Additional Details -->
+                <div class="form-step" data-step="3">
+                    <h3 style="margin-bottom: 1.5rem;">Additional Details</h3>
+
+                    <div class="form-group">
+                        <label>Special Instructions (Optional)</label>
+                        <textarea id="instructions" rows="3" placeholder="Any gates, obstacles, or special requests?"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Photos of Your Lawn (Optional)</label>
+                        <div class="photo-upload" onclick="document.getElementById('photos').click()">
+                            <input type="file" id="photos" accept="image/*" multiple onchange="handlePhotoUpload(event)">
+                            <p>📷 Click to upload photos</p>
+                            <small>Helps us provide the most accurate estimate</small>
+                        </div>
+                        <div id="photoPreview" class="photo-preview"></div>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep()">Back</button>
+                        <button type="button" class="btn btn-primary" onclick="calculateEstimate()">Get Estimate</button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Schedule & Confirm -->
+                <div class="form-step" data-step="4">
+                    <div class="estimate-display">
+                        <h3>Your Estimated Price</h3>
+                        <div class="estimate-price" id="estimatePrice">$35</div>
+                        <p style="margin-top: 0.5rem;">Final price confirmed before service</p>
+                    </div>
+
+                    <h3 style="margin-bottom: 1rem;">Choose Your Date & Time</h3>
+
+                    <div class="form-group">
+                        <label>Preferred Date *</label>
+                        <input type="date" id="serviceDate" required onchange="loadTimeSlots()">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Available Time Slots *</label>
+                        <div class="time-slots" id="timeSlots">
+                            <div class="time-slot" onclick="selectTimeSlot(this, '8:00 AM')">8:00 AM</div>
+                            <div class="time-slot" onclick="selectTimeSlot(this, '10:00 AM')">10:00 AM</div>
+                            <div class="time-slot" onclick="selectTimeSlot(this, '12:00 PM')">12:00 PM</div>
+                            <div class="time-slot" onclick="selectTimeSlot(this, '2:00 PM')">2:00 PM</div>
+                            <div class="time-slot" onclick="selectTimeSlot(this, '4:00 PM')">4:00 PM</div>
+                        </div>
+                        <small>Select your preferred start time</small>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-secondary" onclick="prevStep()">Back</button>
+                        <button type="button" class="btn btn-primary" onclick="confirmBooking()" id="confirmBtn" disabled>Confirm Booking</button>
+                    </div>
+                </div>
+
+                <!-- Success Message -->
+                <div class="form-step" data-step="5">
+                    <div class="success-message">
+                        <svg fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                        <h3>Booking Confirmed!</h3>
+                        <p style="font-size: 1.1rem; color: #666; margin-bottom: 2rem;">
+                            We've received your request and sent a confirmation text to your phone.
+                            <br><br>
+                            One of our team members will accept your booking within 30 minutes and send you a confirmation message.
+                        </p>
+                        <button type="button" class="btn btn-primary" onclick="resetForm()">Book Another Mow</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><strong>Top Lawns Lincoln</strong> - Professional Lawn Care Service</p>
+        <p>Serving Lincoln, Nebraska and surrounding areas</p>
+        <p>Questions? Text us: <a href="tel:+14025550123">(402) 555-0123</a></p>
+        <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">
+            © 2026 Top Lawns Lincoln. All rights reserved.
+        </p>
+    </footer>
+
+    <script>
+        let currentStep = 1;
+        let selectedTime = null;
+        let uploadedPhotos = [];
+
+        // Initialize date picker with minimum date as today
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.getElementById('serviceDate');
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.min = today;
+
+            // Set default date to tomorrow
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            dateInput.value = tomorrow.toISOString().split('T')[0];
+
+            loadTimeSlots();
+        });
+
+        function scrollToBooking() {
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function updateStepIndicator() {
+            const dots = document.querySelectorAll('.step-dot');
+            dots.forEach((dot, index) => {
+                if (index + 1 === currentStep) {
+                    dot.classList.add('active');
+                } else if (index + 1 < currentStep) {
+                    dot.style.background = '#228B22';
+                    dot.classList.remove('active');
+                } else {
+                    dot.style.background = '#ddd';
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function nextStep() {
+            // Validate current step
+            const currentStepEl = document.querySelector(`.form-step[data-step="${currentStep}"]`);
+            const inputs = currentStepEl.querySelectorAll('input[required], select[required]');
+            let isValid = true;
+
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.style.borderColor = '#ff4444';
+                } else {
+                    input.style.borderColor = '#e0e0e0';
+                }
+            });
+
+            if (!isValid) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            // Move to next step
+            document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.remove('active');
+            currentStep++;
+            document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
+            updateStepIndicator();
+
+            // Scroll to top of form
+            document.querySelector('.booking-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function prevStep() {
+            document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.remove('active');
+            currentStep--;
+            document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
+            updateStepIndicator();
+
+            document.querySelector('.booking-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function handlePhotoUpload(event) {
+            const files = Array.from(event.target.files);
+            const preview = document.getElementById('photoPreview');
+
+            files.forEach(file => {
+                if (file.type.startsWith('image/')) {
+                    uploadedPhotos.push(file);
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        preview.appendChild(img);
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+
+        function calculateEstimate() {
+            const lotSize = document.getElementById('lotSize').value;
+
+            // Simple pricing logic
+            const prices = {
+                'small': 30,
+                'medium': 40,
+                'large': 55,
+                'xlarge': 75
+            };
+
+            const estimate = prices[lotSize] || 35;
+            document.getElementById('estimatePrice').textContent = `$${estimate}`;
+
+            nextStep();
+        }
+
+        function loadTimeSlots() {
+            const selectedDate = document.getElementById('serviceDate').value;
+            if (!selectedDate) return;
+
+            // This will later connect to your availability system
+            // For now, showing all slots as available
+            const slots = document.querySelectorAll('.time-slot');
+
+            // Simulate some unavailable slots (in real app, fetch from backend)
+            const unavailableSlots = ['12:00 PM']; // Example
+
+            slots.forEach(slot => {
+                const time = slot.textContent;
+                if (unavailableSlots.includes(time)) {
+                    slot.classList.add('unavailable');
+                    slot.onclick = null;
+                } else {
+                    slot.classList.remove('unavailable');
+                }
+            });
+        }
+
+        function selectTimeSlot(element, time) {
+            if (element.classList.contains('unavailable')) return;
+
+            // Remove previous selection
+            document.querySelectorAll('.time-slot').forEach(slot => {
+                slot.classList.remove('selected');
+            });
+
+            // Select new slot
+            element.classList.add('selected');
+            selectedTime = time;
+
+            // Enable confirm button
+            document.getElementById('confirmBtn').disabled = false;
+        }
+
+        async function confirmBooking() {
+            if (!selectedTime) {
+                alert('Please select a time slot');
+                return;
+            }
+
+            // Disable the confirm button to prevent double submissions
+            const confirmBtn = document.getElementById('confirmBtn');
+            confirmBtn.disabled = true;
+            confirmBtn.textContent = 'Processing...';
+
+            try {
+                // Create FormData to handle both booking data and photos
+                const formData = new FormData();
+
+                // Gather all form data
+                const bookingData = {
+                    address: document.getElementById('address').value,
+                    lotSize: document.getElementById('lotSize').value,
+                    customerName: document.getElementById('customerName').value,
+                    phone: document.getElementById('phone').value,
+                    email: document.getElementById('email').value,
+                    instructions: document.getElementById('instructions').value,
+                    serviceDate: document.getElementById('serviceDate').value,
+                    serviceTime: selectedTime,
+                    estimatedPrice: document.getElementById('estimatePrice').textContent,
+                    status: 'pending'
+                };
+
+                // Add booking data as JSON string
+                formData.append('bookingData', JSON.stringify(bookingData));
+
+                // Add photos if any were uploaded
+                if (uploadedPhotos.length > 0) {
+                    uploadedPhotos.forEach(photo => {
+                        formData.append('photos', photo);
+                    });
+                }
+
+                // Send to backend
+                const response = await fetch('http://localhost:3000/api/send-booking-sms', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    // Show success step
+                    document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.remove('active');
+                    currentStep = 5;
+                    document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
+
+                    document.querySelector('.booking-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    throw new Error(result.error || 'Booking failed');
+                }
+
+            } catch (error) {
+                alert('Booking failed. Please call us at (402) 555-0123');
+                console.error('Booking error:', error);
+
+                // Re-enable the button
+                confirmBtn.disabled = false;
+                confirmBtn.textContent = 'Confirm Booking';
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('bookingForm').reset();
+            currentStep = 1;
+            document.querySelectorAll('.form-step').forEach(step => step.classList.remove('active'));
+            document.querySelector('.form-step[data-step="1"]').classList.add('active');
+            updateStepIndicator();
+            selectedTime = null;
+            uploadedPhotos = [];
+            document.getElementById('photoPreview').innerHTML = '';
+            document.getElementById('confirmBtn').disabled = true;
+
+            scrollToBooking();
+        }
+    </script>
+</body>
+</html>
