@@ -12,7 +12,10 @@ require('dotenv').config();
 const { db } = require('./firebase');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: ['https://edybe.github.io', 'http://localhost:3000'],
+    credentials: true
+}));
 app.use(express.json());
 app.use(express.static('public'));
 
